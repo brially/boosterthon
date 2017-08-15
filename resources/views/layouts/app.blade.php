@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/star-rating.css') }}" rel="stylesheet">
 </head>
 <body>
     <div id="app">
@@ -70,7 +71,12 @@
                 </div>
             </div>
         </nav>
-
+        @if(session()->exists('message'))
+            <div class="alert alert-{{ session('message_status') }} alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <strong>{{ camel_case(session('message_status')) }}!</strong> {{session('message')}}
+            </div>
+        @endif
         @yield('content')
     </div>
 
