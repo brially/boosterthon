@@ -14,7 +14,8 @@ class FundraiserController extends Controller
      */
     public function index()
     {
-        //
+        $fundraisers = Fundraiser::all();
+        return view('fundraiser.index', compact(['fundraisers']));
     }
 
     /**

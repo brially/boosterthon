@@ -11,10 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FundraiserController@index');
 
 Auth::routes();
 
+Route::group(['middleware' => ['auth']], function () {
+    Route::resource('/fundraiser', 'FundraiserController');
+    Route::resource('/review', 'ReviewController');
+});
+
+
+
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->name('welcome');
