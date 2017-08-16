@@ -29,7 +29,13 @@
                                 <td>{{ $fundraiser->name }}</td>
                                 <td>{{ $fundraiser->reviews()->count() }}</td>
                                 <td>
-                                    {{ $fundraiser->reviews()->count()  > 0 ? $fundraiser->reviews->sum('stars') / $fundraiser->reviews()->count()  : 0 }}
+                                    @if( $fundraiser->reviews()->count()  > 0 || $fundraiser->reviews->sum('stars') > 0)
+                                        <span class="text-warning">
+                                            @for ($i = 0; $i < $fundraiser->reviews->sum('stars') / $fundraiser->reviews()->count(); $i++)
+                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                            @endfor
+                                        </span>
+                                    @endif
                                 </td>
                                 <td>
                                     <a class="btn btn-xs btn-info"
