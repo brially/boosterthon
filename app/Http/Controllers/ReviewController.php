@@ -33,7 +33,7 @@ class ReviewController extends Controller
         else {
             return back()
                 ->with('message', 'A fundraiser must be selected to write a review')
-                ->with('message-status', 'danger');
+                ->with('message_status', 'danger');
         }
        return view('review.create', compact(['fundraiser']));
     }
@@ -57,7 +57,7 @@ class ReviewController extends Controller
         if($existing_review){
             return back()
                 ->with('message', 'You have already created a review for this fundraiser.')
-                ->with('message-status', 'danger')
+                ->with('message_status', 'danger')
                 ->withInput();
         }
 
@@ -67,7 +67,7 @@ class ReviewController extends Controller
 
         return redirect(action('ReviewController@show', $review ))
             ->with('message', 'Your review has been saved')
-            ->with('message-status', 'success');
+            ->with('message_status', 'success');
     }
 
     /**

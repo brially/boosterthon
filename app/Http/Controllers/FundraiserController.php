@@ -45,7 +45,7 @@ class FundraiserController extends Controller
 
         return redirect(action('FundraiserController@index' ))
             ->with('message', 'Your fundraiser has been saved')
-            ->with('message-status', 'success');
+            ->with('message_status', 'success');
 
 
     }
