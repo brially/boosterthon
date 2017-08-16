@@ -16,10 +16,14 @@ class Review extends Model
     ];
 
     public function fundraiser(){
-        return $this->belongsTo('Models\Fundraiser');
+        return $this->belongsTo('App\Models\Fundraiser');
     }
 
     public function user(){
-        return $this->belongsTo('Models\User');
+        return $this->belongsTo('App\Models\User');
+    }
+    
+    public static function byUserAndFundraiser($user_id, $fundraiser_id){
+        return self::where('user_id', $user_id)->where('fundraiser_id', $fundraiser_id)->first();
     }
 }
