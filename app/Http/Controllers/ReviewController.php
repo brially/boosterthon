@@ -56,8 +56,9 @@ class ReviewController extends Controller
 
         if($existing_review){
             return back()
-                ->with('message', 'You have already created a review for this fundraiser <a href="'. action('ReviewController@show', $existing_review ) . '" class="btn btn-xs btn-info" >here</a>')
-                ->with('message-status', 'danger');
+                ->with('message', 'You have already created a review for this fundraiser.')
+                ->with('message-status', 'danger')
+                ->withInput();
         }
 
 

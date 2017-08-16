@@ -57,7 +57,7 @@
 
                                         <div class="col-md-6">
                                             <textarea id="comments" type="text" class="form-control"
-                                                   name="comments" value="{{ old('comments')  }}" ></textarea>
+                                                   name="comments" >{{ old('comments')  }}</textarea>
 
                                             @if ($errors->has('comments'))
                                                 <span class="help-block">
