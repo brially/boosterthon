@@ -29,7 +29,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <a class="btn btn-xs"
+                                    <a class="btn btn-xs btn-info"
                                        href="{{ action('ReviewController@create', ['fundraiser_id'=>$fundraiser->id]) }}">
                                         Review
                                     </a>

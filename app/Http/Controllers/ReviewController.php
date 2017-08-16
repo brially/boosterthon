@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fundraiser;
 use App\Models\Review;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class ReviewController extends Controller
 {
@@ -24,7 +26,16 @@ class ReviewController extends Controller
      */
     public function create()
     {
-       return view('review.create');
+        $fundraiser = null;
+        if(Input::has('fundraiser_id')){
+            $fundraiser = Fundraiser::find(Input::get('fundraiser_id'));
+        }
+        else {
+            return back()
+                ->with('message', 'A fundraiser must be selected to write a review')
+                ->with('message-status', 'danger');
+        }
+       return view('review.create', compact(['fundraiser']));
     }
 
     /**
@@ -35,7 +46,27 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'user_id' => 'required|exists:users,id',
+            'fundraiser_id' => 'required|exists:fundraisers,id',
+            'stars' => 'required|between:1,5',
+        ]);
+
+        $existing_review = Review::byUserAndFundraiser(Input::get('user_id'),Input::get('fundraiser_id'));
+
+        if($existing_review){
+            return back()
+                ->with('message', 'You have already created a review for this fundraiser <a href="'. action('ReviewController@show', $existing_review ) . '" class="btn btn-xs btn-info" >here</a>')
+                ->with('message-status', 'danger');
+        }
+
+
+        $review = Review::create($request->only('user_id', 'fundraiser_id', 'stars', 'comments'));
+
+
+        return redirect(action('ReviewController@show', $review ))
+            ->with('message', 'Your review has been saved')
+            ->with('message-status', 'success');
     }
 
     /**
@@ -46,7 +77,7 @@ class ReviewController extends Controller
      */
     public function show(Review $review)
     {
-        //
+        return view('review.show', compact(['review']));
     }
 
     /**

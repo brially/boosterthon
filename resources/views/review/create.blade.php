@@ -18,7 +18,7 @@
                             <a href="{{ route('home') }}"
                                class="btn btn-default"
                                onclick="event.preventDefault();
-                                                     document.getElementById('address-form').submit();">
+                                                     document.getElementById('review-form').submit();">
                                 <span class="glyphicon glyphicon-floppy-save text-success" aria-hidden="true"></span>
                             </a>
                         </div>
@@ -29,32 +29,39 @@
                             <div class="col-sm-12">
                                 <form id="address-form" class="form-horizontal" method="POST" action="{{ action('ReviewController@store') }}">
                                     <input type="hidden" name="_method" value="post">
+                                    <input type="hidden" name="user_id" value="{{ \Auth::user()->id }}">
+                                    <input type="hidden" name="fundraiser_id" value="{{ $fundraiser->id }}">
                                     {{ csrf_field() }}
-                                    <div class="form-group{{ $errors->has('comment') ? ' has-error' : '' }}">
-                                        <label for="address" class="col-md-4 control-label">Comment</label>
+
+
+                                    <div class="form-group{{ $errors->has('stars') ? ' has-error' : '' }}">
+                                        <label for="stars" class="col-md-4 control-label">Stars</label>
 
                                         <div class="col-md-6">
-                                            <input id="address" type="text" class="form-control"
-                                                   name="address" value="{{ old('comment')  }}" required autofocus>
+                                            <input id="stars" type="number" class="form-control"
+                                                   name="stars" value="{{ old('stars') }}"
+                                                   required autofocus
+                                                   min="1" max="5"
+                                            >
 
-                                            @if ($errors->has('comment'))
+                                            @if ($errors->has('stars'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('comment') }}</strong>
+                                                    <strong>{{ $errors->first('stars') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                     </div>
 
-                                    <div class="form-group{{ $errors->has('stars') ? ' has-error' : '' }}">
-                                        <label for="address2" class="col-md-4 control-label">Stars</label>
+                                    <div class="form-group{{ $errors->has('comments') ? ' has-error' : '' }}">
+                                        <label for="comments" class="col-md-4 control-label">Comment</label>
 
                                         <div class="col-md-6">
-                                            <input id="address2" type="number" class="form-control"
-                                                   name="address2" value="{{ old('stars') }}"  >
+                                            <textarea id="comments" type="text" class="form-control"
+                                                   name="comments" value="{{ old('comments')  }}" ></textarea>
 
-                                            @if ($errors->has('stars'))
+                                            @if ($errors->has('comments'))
                                                 <span class="help-block">
-                                                    <strong>{{ $errors->first('stars') }}</strong>
+                                                    <strong>{{ $errors->first('comments') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
