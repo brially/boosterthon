@@ -13,6 +13,9 @@
 
 Route::get('/', 'FundraiserController@index')->name('home');
 
+Route::get('/guest-review/create', 'ReviewController@create')->name('guest-review');
+Route::post('/guest-review', 'ReviewController@store')->name('guest-review-post');
+
 Auth::routes();
 
 Route::group(['middleware' => ['auth']], function () {

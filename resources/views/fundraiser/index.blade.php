@@ -38,10 +38,17 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a class="btn btn-xs btn-info"
-                                       href="{{ action('ReviewController@create', ['fundraiser_id'=>$fundraiser->id]) }}">
-                                        Review
-                                    </a>
+                                    @if(\Auth::check())
+                                        <a class="btn btn-xs btn-info"
+                                           href="{{ action('ReviewController@create', ['fundraiser_id'=>$fundraiser->id]) }}">
+                                            Review
+                                        </a>
+                                    @else
+                                        <a class="btn btn-xs btn-info"
+                                           href="{{ route('guest-review', ['fundraiser_id'=>$fundraiser->id]) }}">
+                                            Review
+                                        </a>
+                                    @endif
                                 </td>
                             </tr>
                         @empty

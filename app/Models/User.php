@@ -36,4 +36,8 @@ class User extends Authenticatable
     public function reviews(){
         return $this->hasMany('App\Models\Review');
     }
+
+    public static function byEmail($email){
+        return self::where('email', $email)->first();
+    }
 }
