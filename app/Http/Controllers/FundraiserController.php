@@ -25,7 +25,7 @@ class FundraiserController extends Controller
      */
     public function create()
     {
-        //
+        return view('fundraiser.create');
     }
 
     /**
@@ -36,7 +36,18 @@ class FundraiserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|unique:fundraisers,name'
+        ]);
+
+        Fundraiser::create($request->only('name'));
+
+
+        return redirect(action('FundraiserController@index' ))
+            ->with('message', 'Your fundraiser has been saved')
+            ->with('message-status', 'success');
+
+
     }
 
     /**

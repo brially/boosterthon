@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'FundraiserController@index');
+Route::get('/', 'FundraiserController@index')->name('home');
 
 Auth::routes();
 
@@ -22,7 +22,7 @@ Route::group(['middleware' => ['auth']], function () {
 
 
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/welcome', function () {
