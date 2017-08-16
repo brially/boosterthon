@@ -51,7 +51,12 @@
                                     </div>
 
                                     <div class="form-group"> <!-- Submit Button -->
-                                        <button type="submit" class="btn btn-primary pull-right">Save!</button>
+                                        <div class="col-md-offset-4 col-md-6">
+                                            <button type="submit" class="btn btn-default ">
+                                                <span class="text-success">Save </span>
+                                                <span class="glyphicon glyphicon-floppy-save text-success" aria-hidden="true"></span>
+                                            </button>
+                                        </div>
                                     </div>
 
                                 </form>
