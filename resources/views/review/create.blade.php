@@ -9,17 +9,17 @@
                         New Review For {{ $fundraiser->name  }}
                         <div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
                             <a href="{{ url()->previous()  }}" class="btn btn-default">
-                                <span class="glyphicon glyphicon-arrow-left text-success" aria-hidden="true"></span>
+                                <span class="fa fa-arrow-left text-success" aria-hidden="true"></span>
                             </a>
                             <a href="{{ route('home') }}"
                                class="btn btn-default">
-                                <span class="glyphicon glyphicon-home text-success" aria-hidden="true"></span>
+                                <span class="fa fa-home text-success" aria-hidden="true"></span>
                             </a>
                             <a href="{{ route('home') }}"
                                class="btn btn-default"
                                onclick="event.preventDefault();
                                                      document.getElementById('review-form').submit();">
-                                <span class="glyphicon glyphicon-floppy-save text-success" aria-hidden="true"></span>
+                                <span class="fa fa-floppy-o text-success" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -102,7 +102,7 @@
                                         <div class="col-md-offset-4 col-md-6">
                                             <button type="submit" class="btn btn-default ">
                                                 <span class="text-success">Save </span>
-                                                <span class="glyphicon glyphicon-floppy-save text-success" aria-hidden="true"></span>
+                                                <span class="fa fa-floppy-o text-success" aria-hidden="true"></span>
                                             </button>
                                         </div>
                                     </div>

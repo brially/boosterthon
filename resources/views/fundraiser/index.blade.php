@@ -6,7 +6,7 @@
         <div class="col-md-8 col-md-offset-2">
             <div class="panel panel-default">
                 <div class="panel-heading">Fundraisers <a class="btn btn-xs btn-success" href="{{ action('FundraiserController@create') }}">
-                        <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                        <span class="fa fa-plus" aria-hidden="true"></span>
                     </a> </div>
                 <table class="table table-striped table table-responsive">
                     <thead>
@@ -26,13 +26,18 @@
                     <tbody>
                         @forelse($fundraisers as $fundraiser )
                             <tr>
-                                <td>{{ $fundraiser->name }}</td>
+                                <td>
+                                    <a class="btn btn-xs btn-info"
+                                       href="{{ action('ReviewController@index', ['fundraiser_id'=>$fundraiser->id]) }}">
+                                        {{ $fundraiser->name }}
+                                    </a>
+                                </td>
                                 <td>{{ $fundraiser->reviews()->count() }}</td>
                                 <td>
                                     @if( $fundraiser->reviews()->count()  > 0 || $fundraiser->reviews->sum('stars') > 0)
                                         <span class="text-warning">
                                             @for ($i = 0; $i < $fundraiser->reviews->sum('stars') / $fundraiser->reviews()->count(); $i++)
-                                                <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                                <span class="fa fa-star" aria-hidden="true"></span>
                                             @endfor
                                         </span>
                                     @endif

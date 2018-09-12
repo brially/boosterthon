@@ -9,17 +9,17 @@
                         {{ $review->user->name }}'s review of {{ $review->fundraiser->name }}
                         <div class="btn-group btn-group-sm pull-right" role="group" aria-label="...">
                             <a href="{{ url()->previous()  }}" class="btn btn-default">
-                                <span class="glyphicon glyphicon-arrow-left text-success" aria-hidden="true"></span>
+                                <span class="fa fa-arrow-left text-success" aria-hidden="true"></span>
                             </a>
                             <a href="{{ route('home') }}"
                                class="btn btn-default">
-                                <span class="glyphicon glyphicon-home text-success" aria-hidden="true"></span>
+                                <span class="fa fa-home text-success" aria-hidden="true"></span>
                             </a>
                             <a href="{{ route('home') }}"
                                class="btn btn-default"
                                onclick="event.preventDefault();
                                                      document.getElementById('review-form').submit();">
-                                <span class="glyphicon glyphicon-floppy-save text-success" aria-hidden="true"></span>
+                                <span class="fa fa-floppy-o text-success" aria-hidden="true"></span>
                             </a>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             <div class="col-sm-12">
                                 <span class="text-warning">
                                     @for ($i = 0; $i < $review->stars; $i++)
-                                        <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+                                        <span class="fa fa-star" aria-hidden="true"></span>
                                     @endfor
                                 </span>
                             </div>

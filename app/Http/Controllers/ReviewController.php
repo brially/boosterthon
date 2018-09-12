@@ -18,7 +18,16 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        //
+        $fundraiser = null;
+        if(Input::has('fundraiser_id')){
+            $fundraiser = Fundraiser::find(Input::get('fundraiser_id'));
+        }
+        else {
+            return back()
+                ->with('message', 'A fundraiser must be selected to view reviews')
+                ->with('message_status', 'danger');
+        }
+        return view('review.index', compact(['fundraiser']));
     }
 
     /**
